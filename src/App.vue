@@ -1,20 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>
-      <div class="portfolio" @mouseover="showPortfolioMenu = true" @mouseleave="showPortfolioMenu = false">
-        <div>Portfolio</div>
-        <div class="portfolio-menu" v-if="showPortfolioMenu">
-          <router-link to="/portraits">Portraits</router-link>
-          <router-link to="/couples">Couples</router-link>
-          <router-link to="/families">Families</router-link>
-        </div>
-      </div>
-      <div id="logo">Y Parry Photography</div>
-      <router-link to="/prices">Prices</router-link>
-      <router-link to="/about">About</router-link>
-      <router-link to="/contact">Contact</router-link>
-    </div>
+    <Navigation />
     <router-view class="router-view"/>
     <div id="footer">
       <a href="mailto:yparryphotography@gmail.com">yparryphotography@gmail.com</a>
@@ -25,12 +11,9 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import Navigation from './components/Navigation.vue';
 @Component({
-  data() {
-    return {
-      showPortfolioMenu: false,
-    };
-  }
+  components: { Navigation },
 })
 export default class App extends Vue {}
 </script>
@@ -46,67 +29,10 @@ body {
 #app {
   font-family: 'Montserrat', sans-serif;
   text-align: center;
-
-  #nav {
-    padding: 30px 100px;
-    display: grid;
-    place-items: center;
-    grid-gap: 30px;
-    grid-template-columns: 3fr 3fr 8fr repeat(3, 2fr);
-    position: sticky;
-    top: 0;
-    background-color: white;
-    box-shadow: 0 0 5px #cccccc;
-
-    a, .portfolio {
-      font-weight: bold;
-      color: #2c3e50;
-      text-decoration: none;
-      text-transform: uppercase;
-      font-family: 'Playfair Display', serif;
-
-      &:hover {
-        color: $peach;
-      }
-
-      &.router-link-exact-active {
-        color: $grey;
-      }
-    }
-
-    .portfolio {
-      position: relative;
-      height: 100%;
-      display: grid;
-      place-items: center;  
-
-      .portfolio-menu {
-        box-shadow: 0 0 3px #999999;
-        position: absolute;
-        left: -17px;
-        top: 55px;
-        padding: 20px;
-        background-color: #fafafa;
-        display: grid;
-        gap: 20px;
-
-      }
-    }
-
-    #logo {
-      width: 100%;
-      font-family: 'Sacramento', cursive;
-      font-size: 40px;
-      color: $red;
-    }
-  }
-
-  .router-view {
-    max-width: 1100px;
-    padding: 0 100px;
-    margin: 0 auto;
-    min-height: calc(100vh - 239px);
-  }
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   #footer {
     height: 40px;
@@ -114,6 +40,35 @@ body {
     padding: 30px 100px;
     display: grid;
     place-items: center;
+  }
+  p {
+    font-size: 20px;
+  }
+
+  .photo-gallery {
+    columns: auto 3;
+    column-gap: 30px;
+    padding: 15px 0;
+
+    img {
+      margin: 15px 0;
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: $breakpoint-xlarge) {
+    .photo-gallery {
+      column-count: 2;
+    }
+  }
+
+  @media screen and (max-width: $breakpoint-medium) {
+    .photo-gallery {
+      column-gap: 15px;
+      img {
+        margin: 5px 0;
+      }
+    }
   }
 }
 </style>
