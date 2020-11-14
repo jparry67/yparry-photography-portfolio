@@ -79,9 +79,6 @@ export default class Navigation extends Vue {
         box-shadow: 0 0 5px #cccccc;
         place-items: center;
         background-color: white;
-        &.scrolled {
-            background-color: $cream;
-        }
         a, .portfolio, .menu-icon {
             font-weight: bold;
             color: $blue;
@@ -158,6 +155,13 @@ export default class Navigation extends Vue {
             &.desktop {
                 display: none;
             }
+        }
+        &.scrolled {
+            // padding: 15px;
+            // #logo {
+            //     font-size: 30px;
+            // }
+            // background-color: $cream;
         }
     }
 }
