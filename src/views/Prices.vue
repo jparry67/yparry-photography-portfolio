@@ -1,7 +1,7 @@
 <template>
   <div class="prices">
     <div class="row">
-      <img src="@/assets/families/IMG_5005.jpg">
+      <img src="@/assets/prices/prices-1.jpg">
       <div class="content">
         <h1>Prices</h1>
         <h3>Single Family (up to 8 people) - $75</h3>
@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="row">
-      <img src="@/assets/couples/IMG_5255.jpg">
+      <img src="@/assets/prices/prices-2.jpg">
       <div class="content">
         <h2>All Sessions Will Receive</h2>
         <p>Up to 1 hour coverage</p>
@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="row">
-      <img src="@/assets/portraits/IMG_6024.jpg">
+      <img src="@/assets/prices/prices-3.jpg">
       <div class="content">
         <h2>Notes</h2>
         <p>*50% deposit required at the time of booking to secure your session date</p>

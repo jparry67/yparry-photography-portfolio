@@ -1,13 +1,13 @@
 <template>
   <div class="families">
     <div class="photo-gallery">
-      <img src="@/assets/families/IMG_4900.jpg">
-      <img src="@/assets/families/IMG_5005.jpg">
-      <img src="@/assets/families/IMG_5116.jpg">
-      <img src="@/assets/families/IMG_5228.jpg">
-      <img src="@/assets/families/IMG_5301.jpg">
-      <img src="@/assets/families/IMG_5316.jpg">
-      <img src="@/assets/families/IMG_6479.jpg">
+      <img src="@/assets/families/families-1.jpg">
+      <img src="@/assets/families/families-2.jpg">
+      <img src="@/assets/families/families-3.jpg">
+      <img src="@/assets/families/families-4.jpg">
+      <img src="@/assets/families/families-5.jpg">
+      <img src="@/assets/families/families-6.jpg">
+      <img src="@/assets/families/families-7.jpg">
     </div>
   </div>
 </template>
