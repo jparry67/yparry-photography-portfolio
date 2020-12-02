@@ -1,14 +1,14 @@
 <template>
   <div class="carousel">
-    <transition name="fade" mode="out-in">
-      <img class="carousel-image" :src="imageUrls[currentImage]" :key="currentImage">
-    </transition>
+    <!-- <transition name="fade" mode="out-in"> -->
+      <img v-for="(imageId, index) in imageIds" class="carousel-image" :class="{current: currentImage === index, transitioning: transitioning === index}" :src="googleDriveUrl + imageId" :key="index">
+    <!-- </transition> -->
     <div class="rotate-buttons">
       <chevron-left-icon class="rotate-icon" @click="automaticCarouselRotation = false; carouselLeft()" />
       <chevron-right-icon class="rotate-icon" @click="automaticCarouselRotation = false; carouselRight()" />
     </div>
     <div class="direct-buttons">
-      <div class="direct-button" v-for="(imageUrl, index) in imageUrls" :key="index" @click="gotoImage(index)" :class="{current: currentImage === index}"></div>
+      <div class="direct-button" v-for="(imageId, index) in imageIds" :key="index" @click="gotoImage(index)" :class="{current: currentImage === index}"></div>
     </div>
   </div>
 </template>
@@ -22,18 +22,23 @@ import ChevronRightIcon from 'vue-material-design-icons/ChevronRight.vue';
   components: { ChevronLeftIcon, ChevronRightIcon }
 })
 export default class Carousel extends Vue {
-  @Prop() private imageUrls!: string;
+  @Prop() private imageIds!: string;
     currentImage = 0;
   show = true;
   automaticCarouselRotation = true;
+  transitioning = -1;
+  googleDriveUrl = "https://drive.google.com/uc?id=";
   carouselLeft() {
-    this.currentImage = (this.currentImage - 1) % this.imageUrls.length;
+    this.transitionImage(this.currentImage);
+    this.currentImage = (this.currentImage - 1) % this.imageIds.length;
   }
   carouselRight() {
-    this.currentImage = (this.currentImage + 1) % this.imageUrls.length;
+    this.transitionImage(this.currentImage);
+    this.currentImage = (this.currentImage + 1) % this.imageIds.length;
   }
   gotoImage(index: number) {
     this.automaticCarouselRotation = false;
+    this.transitionImage(this.currentImage);
     this.currentImage = index;
   }
   rotateCarousel() {
@@ -43,6 +48,10 @@ export default class Carousel extends Vue {
         this.rotateCarousel();
       }
     }, 2800);
+  }
+  transitionImage(index: number) {
+    this.transitioning = index;
+    setTimeout(() => this.transitioning = -1, 1000);
   }
   mounted() {
     this.rotateCarousel();
@@ -67,6 +76,21 @@ export default class Carousel extends Vue {
     top: 74;
     left: 0;
     z-index: -1;
+    display: none;
+    &.current {
+      display: block;
+      -webkit-animation-name: fade-in;
+      -webkit-animation-duration: 1.5s;
+      animation-name: fade-in;
+      animation-duration: 1.5s;
+    }
+    &.transitioning {
+      display: block;
+      -webkit-animation-name: fade-out;
+      -webkit-animation-duration: 1s;
+      animation-name: fade-out;
+      animation-duration: 1s;
+    }
   }
   .fade-enter-active, .fade-leave-active {
     transition: opacity .5s;
@@ -115,5 +139,25 @@ export default class Carousel extends Vue {
       top: 118;
     }
   }
+}
+
+@-webkit-keyframes fade-in {
+  from {opacity: 0} 
+  to {opacity: 1}
+}
+
+@keyframes fade-in {
+  from {opacity: 0} 
+  to {opacity: 1}
+}
+
+@-webkit-keyframes fade-out {
+  from {opacity: 1}
+  to {opacity: 0} 
+}
+
+@keyframes fade-out {
+  from {opacity: 1}
+  to {opacity: 0} 
 }
 </style>

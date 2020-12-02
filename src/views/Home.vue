@@ -1,13 +1,13 @@
 <template>
   <div class="home">
-    <Carousel :imageUrls="carouselImageUrls" />
+    <Carousel :imageIds="carouselImageIds" />
     <div class="content">
       <h1>Portfolios</h1>
       <div class="portfolios">
         <div class="portfolio-link" :style="{backgroundImage: `url(${portraitsImageUrl})`}">
           <div class="link-text">Portraits</div>
         </div>
-        <div class="portfolio-link" :style="{backgroundImage: `url(${couplesImageUrl})`}">
+        <div class="portfolio-link" :style="{backgroundImage: `url(18cBoVBzC2t15zeVHNN7LYDy6NynZU4Ol)`}">
           <div class="link-text">Couples</div>
         </div>
         <div class="portfolio-link" :style="{backgroundImage: `url(${familiesImageUrl})`}">
@@ -36,12 +36,16 @@ import Carousel from '../components/Carousel.vue';
   }
 })
 export default class Home extends Vue {
-  carouselImageUrls = [
-    require("@/assets/home/carousel-1.jpg"),
-    require("@/assets/home/carousel-2.jpg"),
-    require("@/assets/home/carousel-3.jpg"),
-    require("@/assets/home/carousel-4.jpg"),
-    require("@/assets/home/carousel-5.jpg"),
+  googleDriveUrl = "https://drive.google.com/uc?id=";
+  carouselImageIds = [
+    "18cBoVBzC2t15zeVHNN7LYDy6NynZU4Ol",
+    "1xcN04zMVSH4D6fordX9W9VaCgZNV2LF0",
+    "1mG-XEFfYUFSOJvNkIsp7h2TgfyPKOXqn",
+    "1-Q_ThLl3EpU8RdjCShBUUCafvhntkD9f",
+    "117w2JlXTEvLXGkC-nfvs0gFefD7nDHUr",
+    // "1zkkJ2oD9AHa4Grcei4EpQwzJLdYXnFOS",
+    "1V37U68B1bCuFVQNVUj3cSkjqol-t1JHh",
+    "10H2dTKcWQS0NacCnUYrZc4eN7AINl--t",
   ];
   portraitsImageUrl = require('@/assets/home/portraits.jpg');
   couplesImageUrl = require('@/assets/home/couples.jpg');
